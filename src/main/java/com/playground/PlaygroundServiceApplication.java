@@ -9,5 +9,4 @@ public class PlaygroundServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(PlaygroundServiceApplication.class, args);
     }
-
 }
