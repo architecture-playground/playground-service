@@ -8,3 +8,8 @@ spring:
     properties.hibernate:
       dialect: org.hibernate.dialect.PostgreSQL95Dialect
       default_schema: public
+
+server:
+  port: 7999
+  servlet:
+    context-path: /playground
