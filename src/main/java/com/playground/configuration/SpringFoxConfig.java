@@ -13,7 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * <p>
  * read more at https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
  * <p>
- * Documentation is available at http://localhost:8080/playground/swagger-ui.html
+ * Documentation is available at http://[your_host]:[your_port]/[your_app_context_path]/swagger-ui.html
  */
 @Configuration
 @EnableSwagger2

@@ -11,5 +11,4 @@ spring:
 
 server:
   port: 7999
-  servlet:
-    context-path: /playground
+
