@@ -10,7 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.atteo.evo.inflector.English;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -33,5 +35,16 @@ public class PlaygroundEntityService {
         PlaygroundEntity created = playgroundEntityRepository.save(playgroundEntityConverter.toEntity(dto));
         log.info("Entity {} created successfully", created.getId());
         return new CreatedPlaygroundEntityDTO(created.getId());
+    }
+
+    public void createRandom(Integer quantity) {
+        List<PlaygroundEntity> toSave = new ArrayList<>();
+        for (int counter = 0; counter <= quantity; counter++) {
+            PlaygroundEntity entity = new PlaygroundEntity();
+            entity.setObjectId(UUID.randomUUID());
+            entity.setComment("Auto-generated entity");
+            toSave.add(entity);
+        }
+        playgroundEntityRepository.saveAll(toSave);
     }
 }
