@@ -13,3 +13,7 @@ spring:
 
 server:
   port: 7999
+
+springdoc:
+  swagger-ui:
+    path: /openapi-ui.html
