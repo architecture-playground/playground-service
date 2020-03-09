@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController("/")
 public class RootController {
 
-    protected static final String SWAGGER_UI_HTML = "redirect:/swagger-ui.html";
+    protected static final String SWAGGER_UI_HTML = "redirect:/openapi-ui.html";
 
     @GetMapping
     public ModelAndView root() {
