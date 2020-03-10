@@ -17,3 +17,9 @@ server:
 springdoc:
   swagger-ui:
     path: /openapi-ui.html
+
+user-service:
+  ribbon:
+    eureka:
+      enabled: false
+    listOfServers: localhost:8999
