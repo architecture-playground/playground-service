@@ -13,6 +13,9 @@ import java.util.List;
 @FeignClient(value = "user-service", path = "v1/address")
 public interface UserAddressClient {
 
+    // TODO : move to user service and add as dependency.
+    //  Provide this client in "user-api" jar after creating artifactory(jfrog) + jenkins
+
     @GetMapping("/all")
     List<AddressDTO> getAll();
 
