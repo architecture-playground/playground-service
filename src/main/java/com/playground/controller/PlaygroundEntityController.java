@@ -13,25 +13,26 @@ import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
-@RestController("v1")
+@RequestMapping("v1/entity")
+@RestController
 public class PlaygroundEntityController {
 
     private final PlaygroundEntityService playgroundEntityService;
 
-    @GetMapping("/entity/all")
+    @GetMapping("/all")
     public List<PlaygroundEntityDTO> getAll() {
         log.info("Request all playground entities");
         return playgroundEntityService.getAllEntities();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/entity/random")
+    @PostMapping("/random")
     public void createRandom(@RequestParam Integer quantity) {
         log.info("Request to create {} {}", quantity, English.plural("entity"));
         playgroundEntityService.createRandom(quantity);
     }
 
-    @PostMapping("/entity")
+    @PostMapping
     public CreatedPlaygroundEntityDTO create(@RequestBody PlaygroundEntityDTO dto) {
         log.info("Request to create entity {}", dto);
         return playgroundEntityService.createOne(dto);
