@@ -23,6 +23,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springdoc:springdoc-openapi-core:1.1.49'
     implementation 'org.springdoc:springdoc-openapi-ui:1.1.44'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.2.0.RELEASE'
 
     // spring cloud
     runtime 'org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR2'
