@@ -43,6 +43,8 @@ dependencies {
 
     annotationProcessor 'org.projectlombok:lombok'
 
+    // tests
+    testCompile 'org.hamcrest:hamcrest-core:2.2'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
