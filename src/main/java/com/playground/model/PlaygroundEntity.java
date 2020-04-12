@@ -23,16 +23,12 @@ public class PlaygroundEntity {
     @Type(type = "pg-uuid")
     private UUID id;
 
-    /**
-     * see org.hibernate.type.UUIDBinaryType
-     */
-    @Type(type = "pg-uuid-binary")
+    @Type(type = "pg-uuid")
     @Column(name = "object_id")
     private UUID objectId;
 
     @Column(name = "comment")
     private String comment;
-
 
     /* JPA entity lifecycle events */
 
