@@ -10,7 +10,8 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @SpringBootTest(
         properties = {
-                "spring.cloud.consul.enabled=false"
+                "spring.cloud.consul.enabled=false",
+                "spring.cloud.bus.enabled=false"
         }
 )
 public @interface PlaygroundIntegrationTest {
