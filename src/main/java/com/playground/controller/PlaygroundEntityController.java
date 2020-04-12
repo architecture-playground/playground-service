@@ -13,7 +13,7 @@ import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("v1/entity")
+@RequestMapping("v1/playground/entity")
 @RestController
 public class PlaygroundEntityController {
 

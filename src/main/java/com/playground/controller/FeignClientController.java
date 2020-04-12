@@ -10,7 +10,7 @@ import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("v1/feign")
+@RequestMapping("v1/playground/feign")
 @RestController
 public class FeignClientController {
 
