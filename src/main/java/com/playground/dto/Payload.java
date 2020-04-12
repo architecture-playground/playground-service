@@ -10,5 +10,5 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = PaymentPayload.class, name = PaymentPayload.PAYMENT_PAYLOAD_TYPE),
         @JsonSubTypes.Type(value = EmailPayload.class, name = EmailPayload.EMAIL_PAYLOAD_TYPE)
 })
-public interface EntityPayload {
+public interface Payload {
 }

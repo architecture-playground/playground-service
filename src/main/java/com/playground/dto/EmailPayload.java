@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonTypeName(EmailPayload.EMAIL_PAYLOAD_TYPE)
 @Data
-public class EmailPayload implements EntityPayload {
+public class EmailPayload implements Payload {
 
     public static final String EMAIL_PAYLOAD_TYPE = "email_payload";
 
