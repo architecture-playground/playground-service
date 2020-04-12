@@ -42,6 +42,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
 
     annotationProcessor 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
 
     // tests
     testCompile 'org.hamcrest:hamcrest-core:2.2'
