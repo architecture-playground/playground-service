@@ -9,13 +9,13 @@ pipeline{
     triggers { pollSCM('* * * * *') }
     options {
         buildDiscarded(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10')
-                timestamps()
+        timestamps()
     }
     stages{
         stage("gradle build"){
             steps{
                 sh 'gradle clean build'
-                sh 'echo '
+                sh 'echo i did'
             }
         }
     }
