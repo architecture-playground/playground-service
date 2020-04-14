@@ -1,3 +1,5 @@
+#!groovy
+
 properties([disableConcurrentBuilds()])
 
 pipeline{
@@ -6,8 +8,8 @@ pipeline{
     }
     triggers { pollSCM('* * * * *') }
     options {
-        buildDiscarded(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10')
-                timestamps()
+        buildDiscarded(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+        timestamps()
     }
     stages{
         stage("gradle build"){
