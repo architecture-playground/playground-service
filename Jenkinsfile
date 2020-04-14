@@ -1,3 +1,5 @@
+#!groovy
+
 properties([disableConcurrentBuilds()])
 
 pipeline{
