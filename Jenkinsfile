@@ -15,7 +15,7 @@ pipeline{
         stage("gradle build"){
             steps{
                 sh 'gradle clean build'
-                sh 'echo '
+                sh 'echo i did '
             }
         }
     }
