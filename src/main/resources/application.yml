@@ -2,7 +2,9 @@ spring:
   application:
     name: playground-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/
+    # each microservice should have its own database
+    # to prevent clashing of the migration schema version.
+    url: jdbc:postgresql://localhost:5432/playground
     driverClassName: org.postgresql.Driver
     username: postgres
     password: system
