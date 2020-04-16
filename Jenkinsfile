@@ -12,10 +12,9 @@ pipeline{
         timestamps()
     }
     stages{
-        stage("gradle build"){
+        stage("Build Docker"){
             steps{
-                sh 'gradle clean build'
-                sh 'echo i did '
+                sh 'echo "** Building docker image - stage build"'
             }
         }
     }
