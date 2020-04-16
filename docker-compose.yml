@@ -1,8 +1,17 @@
 version: '3.1'
 
 services:
+  playground:
+    network_mode: host
+    restart: always
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 7999:7999
 
   db_posgtgres:
+    network_mode: host
     image: postgres:9.6
     ports:
       - 5432:5432
@@ -11,6 +20,7 @@ services:
       POSTGRES_PASSWORD: system
 
   consul:
+    network_mode: host
     image: consul:1.7.1
     hostname: localhost
     ports:
