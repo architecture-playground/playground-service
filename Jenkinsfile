@@ -16,7 +16,7 @@ pipeline{
             steps{
                 sh ('''#!/bin/bash -ex
 echo "** Building docker image started" && \\
-docker build -t playground:latest && \\
+docker build -t playground:latest . && \\
 echo "** Building docker image finished"
 ''')
             }
