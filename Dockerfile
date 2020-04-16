@@ -20,8 +20,4 @@ RUN echo "Gradle clean build started" && \
 
 COPY ./build/libs/*.jar /app/app.jar
 
-EXPOSE 8500
-EXPOSE 5432
-EXPOSE 7999
-
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
