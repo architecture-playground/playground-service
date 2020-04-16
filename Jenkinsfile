@@ -14,7 +14,10 @@ pipeline{
     stages{
         stage("Build Docker"){
             steps{
-                sh 'echo "** Building docker image - stage build"'
+                sh ('''#!/bin/bash -ex
+echo "** Building docker image - stage build" \
+docker build -t playground:latest
+''')
             }
         }
     }
