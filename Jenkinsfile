@@ -16,8 +16,12 @@ pipeline{
             steps{
                 sh ('''#!/bin/bash -ex
 echo "** Building docker image started" && \\
-docker build -t playground:latest . && \\
-echo "** Building docker image finished"
+docker build -t architectureplayground/playground:latest . && \\
+echo "** Building docker image finished" && \\
+
+echo "** Start pushing docker image in docker hub repository" && \\
+docker push architectureplayground/playground:latest && \\
+echo "** End pushing docker image in docker hub repository" && \\
 ''')
             }
         }
