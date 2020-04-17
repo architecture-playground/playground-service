@@ -29,7 +29,7 @@ echo "** Building docker image started" && \\
 docker build -t architectureplayground/playground:latest . && \\
 echo "** Building docker image finished" && \\
 
-docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock architectureplayground/playground:latest && \\
+docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock architectureplayground/playground:latest
 
 #echo "** Start pushing docker image in docker hub repository" && \\
 #docker push architectureplayground/playground:latest && \\
