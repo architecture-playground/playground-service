@@ -20,9 +20,4 @@ public class MessageFormatTest {
 
         assertThat(MessageFormat.format("{0}", map)).isEqualTo("{ke1=value1, ke3=value3, ke2=value2}");
     }
-
-    @Test
-    void failedTest() {
-        throw new RuntimeException("Failed test!");
-    }
 }
