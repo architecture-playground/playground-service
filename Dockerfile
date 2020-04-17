@@ -21,4 +21,7 @@ RUN echo "Gradle clean build started" && \
     mv ./build/libs/*.jar /app/ && \
     echo "Application jar moved to /app directory"
 
-ENTRYPOINT java -jar /app/*.jar
+# TODO : move lib to host
+
+# Postpone executing tests when container started
+CMD gradle test
