@@ -1,10 +1,8 @@
 spring:
-  application:
-    name: playground-service
   datasource:
     # each microservice should have its own database
     # to prevent clashing of the migration schema version.
-    url: jdbc:postgresql://localhost:5432/playground
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/playground
     driverClassName: org.postgresql.Driver
     username: postgres
     password: system
@@ -14,10 +12,6 @@ spring:
       default_schema: public
   flyway:
     schemas: public, playground
-  cloud:
-    consul:
-      host: localhost
-      port: 8500
 
 server:
   port: 7999
