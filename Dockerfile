@@ -16,8 +16,9 @@ WORKDIR /playground-service
 RUN echo "Gradle clean build started" && \
     # build jar but don't execute tests since "docker in docker" issue
     gradle clean build -x test && \
-    echo "Gradle clean build finished"
+    echo "Gradle clean build finished" && \
+    mkdir /app && \
+    mv ./build/libs/*.jar /app/ && \
+    echo "Application jar moved to /app directory"
 
-COPY ./build/libs/*.jar /app/app.jar
-
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+ENTRYPOINT java -jar /app/*.jar
