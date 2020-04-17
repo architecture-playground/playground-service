@@ -1,17 +1,7 @@
-version: '3.1'
+version: '3.7'
 
 services:
-  playground:
-    network_mode: host
-    restart: always
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    ports:
-      - 7999:7999
-
   db_posgtgres:
-    network_mode: host
     image: postgres:9.6
     ports:
       - 5432:5432
@@ -20,8 +10,21 @@ services:
       POSTGRES_PASSWORD: system
 
   consul:
-    network_mode: host
     image: consul:1.7.1
-    hostname: localhost
     ports:
       - 8500:8500
+
+  playground:
+    restart: always
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 7999:7999
+    environment:
+      # compose environment variables https://docs.docker.com/compose/environment-variables/
+      - POSTGRES_HOST=db_posgtgres
+      - CONSUL_HOST=consul
+    depends_on:
+      - db_posgtgres
+      - consul

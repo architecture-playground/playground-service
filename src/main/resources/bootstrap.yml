@@ -1,0 +1,13 @@
+server:
+  port: 7999
+
+spring:
+  application:
+    name: playground-service
+  cloud:
+    # If you are using spring-cloud-starter-consul-all or spring-cloud-starter-consul-config,
+    # you need to put values in bootstrap.properties.
+    # see https://github.com/spring-cloud/spring-cloud-consul/blob/master/docs/src/main/asciidoc/spring-cloud-consul.adoc#registering-with-consul
+    consul:
+      host: ${CONSUL_HOST:localhost}
+      port: ${CONSUL_POSRT:8500}
