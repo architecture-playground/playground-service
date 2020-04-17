@@ -16,9 +16,7 @@ services:
 
   playground:
     restart: always
-    build:
-      context: ./
-      dockerfile: Dockerfile
+    image: architectureplayground/playground
     ports:
       - 7999:7999
     environment:

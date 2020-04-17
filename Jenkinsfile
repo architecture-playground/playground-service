@@ -12,6 +12,13 @@ pipeline{
         timestamps()
     }
     stages{
+        stage("Tests"){
+            steps{
+                sh '''
+                    docker run -it --rm -v $PWD:$PWD -w $PWD -v /var/run/docker.sock:/var/run/docker.sock gradle:6.3.0-jdk14 gradle test
+                '''
+            }
+        }
         stage("Login to Docker"){
             steps{
                 echo "** Docker login "
