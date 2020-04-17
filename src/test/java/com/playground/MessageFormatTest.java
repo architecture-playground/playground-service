@@ -1,6 +1,5 @@
 package com.playground;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.text.MessageFormat;
@@ -20,5 +19,10 @@ public class MessageFormatTest {
         map.put("ke3", "value3");
 
         assertThat(MessageFormat.format("{0}", map)).isEqualTo("{ke1=value1, ke3=value3, ke2=value2}");
+    }
+
+    @Test
+    void failedTest() {
+        throw new RuntimeException("Failed test!");
     }
 }
