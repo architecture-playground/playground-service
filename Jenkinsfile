@@ -31,7 +31,7 @@ echo "** Building docker image finished" && \\
 
 echo "** Start pushing docker image in docker hub repository" && \\
 docker push architectureplayground/playground:latest && \\
-echo "** End pushing docker image in docker hub repository" && \\
+echo "** End pushing docker image in docker hub repository"
 ''')
             }
         }
