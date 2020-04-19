@@ -12,29 +12,35 @@ pipeline{
         timestamps()
     }
     stages{
-//        stage("Login to Docker"){
-//            steps{
-//                echo "** Docker login "
-//                withCredentials([usernamePassword(credentialsId: 'dockerhub_architectureplayground', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-//                    sh '''
-//                        docker login -u $USERNAME -p $PASSWORD
-//                    '''
-//                }
-//            }
-//        }
-        stage("Run Tests and Build Docker"){
+        stage("Tests"){
             steps{
                 sh ('''#!/bin/bash -ex
-echo "** Building docker image started" && \\
-docker build -t architectureplayground/playground:latest . && \\
-echo "** Building docker image finished" && \\
+echo "** Building tests docker image started" && \\
+docker build --target build -t architectureplayground/playground:tests . && \\
+echo "** Building tests docker image finished" && \\
 
-docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock architectureplayground/playground:latest
-
-#echo "** Start pushing docker image in docker hub repository" && \\
-#docker push architectureplayground/playground:latest && \\
-#echo "** End pushing docker image in docker hub repository"
+echo "** Tests started" && \\
+docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock architectureplayground/playground:tests
+echo "** Tests finished"
 ''')
+            }
+        }
+        stage("Push Docker Image"){
+            steps{
+                echo "** Docker login "
+                withCredentials([usernamePassword(credentialsId: 'dockerhub_architectureplayground', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh '''#!/bin/bash -ex
+echo "** Building application docker image started" && \\
+docker build --target app -t architectureplayground/playground:latest . && \\
+echo "** Building application docker image finished" && \\
+
+docker login -u $USERNAME -p $PASSWORD
+                        
+echo "** Start pushing docker image in docker hub repository" && \\
+docker push architectureplayground/playground:latest && \\
+echo "** End pushing docker image in docker hub repository"
+                    '''
+                }
             }
         }
     }

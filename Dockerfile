@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk13:x86_64-alpine-jdk-13.0.2_8-slim
+FROM adoptopenjdk/openjdk13:x86_64-alpine-jdk-13.0.2_8-slim as build
 
 RUN echo "Install Gradle" && \
     apk add --no-cache wget && \
@@ -21,7 +21,9 @@ RUN echo "Gradle clean build started" && \
     mv ./build/libs/*.jar /app/ && \
     echo "Application jar moved to /app directory"
 
-# TODO : move lib to host
-
 # Postpone executing tests when container started
 CMD gradle test
+
+FROM adoptopenjdk/openjdk13:x86_64-alpine-jdk-13.0.2_8-slim as app
+COPY --from=build /app/ .
+ENTRYPOINT java -jar /app/*.jar
