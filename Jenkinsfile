@@ -2,8 +2,8 @@
 
 properties([disableConcurrentBuilds()])
 
-pipeline{
-    agent{
+pipeline {
+    agent {
         label 'master'
     }
     triggers { pollSCM('* * * * *') }
@@ -11,10 +11,10 @@ pipeline{
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
     }
-    stages{
-        stage("Tests"){
-            steps{
-                sh ('''#!/bin/bash -ex
+    stages {
+        stage("Tests") {
+            steps {
+                sh('''#!/bin/bash -ex
 echo "** Building tests docker image started" && \\
 docker build --target build -t architectureplayground/playground:tests . && \\
 echo "** Building tests docker image finished" && \\
@@ -25,22 +25,23 @@ echo "** Tests finished"
 ''')
             }
         }
-        stage("Push Docker Image"){
-            steps{
-                echo "** Docker login "
+        stage("Push Docker Image") {
+            steps {
+                echo "** Docker login started"
                 withCredentials([usernamePassword(credentialsId: 'dockerhub_architectureplayground', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh '''#!/bin/bash -ex
+                    sh '''docker login -u $USERNAME -p $PASSWORD'''
+                }
+                echo "** Docker login finished"
+
+                sh '''#!/bin/bash -ex
 echo "** Building application docker image started" && \\
 docker build --target app -t architectureplayground/playground:latest . && \\
 echo "** Building application docker image finished" && \\
-
-docker login -u $USERNAME -p $PASSWORD
                         
 echo "** Start pushing docker image in docker hub repository" && \\
 docker push architectureplayground/playground:latest && \\
-echo "** End pushing docker image in docker hub repository"
+echo "** Docker image pushed to docker hub repository"
                     '''
-                }
             }
         }
     }

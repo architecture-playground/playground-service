@@ -1,14 +1,4 @@
-FROM adoptopenjdk/openjdk13:x86_64-alpine-jdk-13.0.2_8-slim as build
-
-RUN echo "Install Gradle" && \
-    apk add --no-cache wget && \
-    wget -nv https://services.gradle.org/distributions/gradle-6.3-bin.zip && \
-    mkdir /opt/gradle && \
-    unzip -d /opt/gradle gradle-6.3-bin.zip && \
-    rm -rf gradle-6.3-bin.zip
-
-ENV GRADLE_HOME=/opt/gradle/gradle-6.3
-ENV PATH=$PATH:$GRADLE_HOME/bin
+FROM gradle:6.3.0-jdk14 as build
 
 COPY . /playground-service
 WORKDIR /playground-service
