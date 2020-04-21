@@ -20,7 +20,7 @@ docker build --target build -t architectureplayground/playground:tests . && \\
 echo "** Building tests docker image finished" && \\
 
 echo "** Tests started" && \\
-docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock architectureplayground/playground:tests
+docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock architectureplayground/playground:tests && \\
 echo "** Tests finished"
 ''')
             }
