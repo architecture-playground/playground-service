@@ -14,34 +14,18 @@ pipeline {
     stages {
         stage("Tests") {
             steps {
-                sh('''#!/bin/bash -ex
-echo "** Building tests docker image started" && \\
-docker build --target build -t architectureplayground/playground:tests . && \\
-echo "** Building tests docker image finished" && \\
-
-echo "** Tests started" && \\
-docker run -i --rm -v /var/run/docker.sock:/var/run/docker.sock architectureplayground/playground:tests && \\
-echo "** Tests finished"
-''')
+                tests("playground-service")
             }
         }
-        stage("Push Docker Image") {
-            steps {
-                echo "** Docker login started"
-                withCredentials([usernamePassword(credentialsId: 'dockerhub_architectureplayground', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh '''docker login -u $USERNAME -p $PASSWORD'''
+        stage("check branch and push to Docker hub repository") {
+            when {
+                expression {
+                    print(env.BRANCH_NAME)
+                    return env.BRANCH_NAME == 'master';
                 }
-                echo "** Docker login finished"
-
-                sh '''#!/bin/bash -ex
-echo "** Building application docker image started" && \\
-docker build --target app -t architectureplayground/playground:latest . && \\
-echo "** Building application docker image finished" && \\
-                        
-echo "** Start pushing docker image in docker hub repository" && \\
-docker push architectureplayground/playground:latest && \\
-echo "** Docker image pushed to docker hub repository"
-                    '''
+            }
+            steps {
+                pushImageToRepository("playground-service")
             }
         }
     }
