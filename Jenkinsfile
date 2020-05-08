@@ -13,15 +13,24 @@ pipeline {
         timestamps()
     }
     stages {
+        stage("Validate Commits") {
+            when {
+                expression {
+                    return env.BRANCH_NAME != 'master';
+                }
+            }
+            steps {
+                validateCommits()
+            }
+        }
         stage("Tests") {
             steps {
                 tests("playground-service")
             }
         }
-        stage("check branch and push to Docker hub repository") {
+        stage("Push to Docker Hub") {
             when {
                 expression {
-                    print(env.BRANCH_NAME)
                     return env.BRANCH_NAME == 'master';
                 }
             }
