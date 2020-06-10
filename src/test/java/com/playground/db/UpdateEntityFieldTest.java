@@ -1,5 +1,6 @@
-package com.playground;
+package com.playground.db;
 
+import com.playground.PlaygroundIntegrationTest;
 import com.playground.model.PlaygroundEntity;
 import com.playground.repository.PlaygroundEntityRepository;
 import org.junit.jupiter.api.Test;

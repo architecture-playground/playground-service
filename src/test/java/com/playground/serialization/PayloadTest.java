@@ -1,4 +1,4 @@
-package com.playground;
+package com.playground.serialization;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.playground.dto.EmailPayload;

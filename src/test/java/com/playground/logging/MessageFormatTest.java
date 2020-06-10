@@ -1,4 +1,4 @@
-package com.playground;
+package com.playground.logging;
 
 import org.junit.jupiter.api.Test;
 
