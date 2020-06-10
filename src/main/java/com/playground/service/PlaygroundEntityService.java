@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.atteo.evo.inflector.English;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,17 @@ public class PlaygroundEntityService {
         return found.stream()
                 .map(playgroundEntityConverter::toDto)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public long removeAllEntities() {
+        List<UUID> found = playgroundEntityRepository.findAll().stream()
+                .map(PlaygroundEntity::getId)
+                .collect(Collectors.toList());
+
+        long removedItemsCount = playgroundEntityRepository.deleteAllByIdIn(found);
+        log.info("Successfully removed {} entities", removedItemsCount);
+        return removedItemsCount;
     }
 
     public CreatedPlaygroundEntityDTO createOne(PlaygroundEntityDTO dto) {

@@ -7,11 +7,17 @@ spring:
     username: postgres
     password: system
   jpa:
-    properties.hibernate:
-      dialect: org.hibernate.dialect.PostgreSQL95Dialect
-      default_schema: public
+    properties:
+      hibernate:
+        jdbc.batch_size: 20
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        default_schema: public
   flyway:
     schemas: public, playground
+
+# Enable Hibernate SQL logging
+logging.level.org.hibernate.SQL: DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
 server:
   port: 7999

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.atteo.evo.inflector.English;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,12 @@ public class PlaygroundEntityController {
         return playgroundEntityService.getAllEntities();
     }
 
+    @DeleteMapping("/all")
+    public long removeAll() {
+        log.info("Request to remove all playground entities");
+        return playgroundEntityService.removeAllEntities();
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/random")
     public void createRandom(@RequestParam Integer quantity) {
@@ -32,7 +39,9 @@ public class PlaygroundEntityController {
         playgroundEntityService.createRandom(quantity);
     }
 
-    @PostMapping
+    @PostMapping(
+            consumes = MimeTypeUtils.APPLICATION_JSON_VALUE
+    )
     public CreatedPlaygroundEntityDTO create(@RequestBody PlaygroundEntityDTO dto) {
         log.info("Request to create entity {}", dto);
         return playgroundEntityService.createOne(dto);
