@@ -49,14 +49,14 @@ public class PlaygroundEntityService {
         return new CreatedPlaygroundEntityDTO(created.getId());
     }
 
-    public void createRandom(Integer quantity) {
+    public List<PlaygroundEntity> createRandom(Integer quantity) {
         List<PlaygroundEntity> toSave = new ArrayList<>();
-        for (int counter = 0; counter <= quantity; counter++) {
+        for (int counter = 0; counter < quantity; counter++) {
             PlaygroundEntity entity = new PlaygroundEntity();
             entity.setObjectId(UUID.randomUUID());
             entity.setComment("Auto-generated entity");
             toSave.add(entity);
         }
-        playgroundEntityRepository.saveAll(toSave);
+        return playgroundEntityRepository.saveAll(toSave);
     }
 }

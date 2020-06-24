@@ -30,6 +30,14 @@ public class PlaygroundEntity {
     @Column(name = "comment")
     private String comment;
 
+    @Type(type = "pgsql-enum")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private PlaygroundEntityStatus status;
+
+    @Column(name = "succeed")
+    private Boolean succeed;
+
     /* JPA entity lifecycle events */
 
     /**
