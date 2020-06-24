@@ -21,7 +21,32 @@ public interface PlaygroundEntityRepository extends JpaRepository<PlaygroundEnti
 
     /**
      * Must be called from method marked with {@link org.springframework.transaction.annotation.Transactional}.
+     * <p>
+     * The PESSIMISTIC_READ acquires a shared (read) lock on the associated table row record, while the PESSIMISTIC_WRITE
+     * acquires an exclusive (write) lock.
+     * The shared lock blocks any other concurrent exclusive lock requests,
+     * but it allows other shared lock requests to proceed.
+     * <p>
+     * The exclusive lock blocks both shared and exclusive lock requests.
+     * What's worth mentioning is that, for Hibernate, if the database does not support shared locks (e.g. Oracle),
+     * then a shared lock request (PESSIMISTIC_READ) will simply acquire an exclusive lock request (PESSIMISTIC_WRITE).
      */
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    PlaygroundEntity findLockById(UUID playgroundEntityId);
+    PlaygroundEntity findForPessimisticWriteById(UUID playgroundEntityId);
+
+    /**
+     * Must be called from method marked with {@link org.springframework.transaction.annotation.Transactional}.
+     * <p>
+     * The PESSIMISTIC_READ acquires a shared (read) lock on the associated table row record, while the PESSIMISTIC_WRITE
+     * acquires an exclusive (write) lock.
+     *
+     * The shared lock blocks any other concurrent exclusive lock requests,
+     * but it allows other shared lock requests to proceed.
+     * <p>
+     * The exclusive lock blocks both shared and exclusive lock requests.
+     * What's worth mentioning is that, for Hibernate, if the database does not support shared locks (e.g. Oracle),
+     * then a shared lock request (PESSIMISTIC_READ) will simply acquire an exclusive lock request (PESSIMISTIC_WRITE).
+     */
+    @Lock(LockModeType.PESSIMISTIC_READ)
+    PlaygroundEntity findForPessimisticReadById(UUID playgroundEntityId);
 }

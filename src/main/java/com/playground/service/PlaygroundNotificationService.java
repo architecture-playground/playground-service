@@ -17,7 +17,7 @@ public class PlaygroundNotificationService {
 
     @Transactional
     public void handleNotification(NotificationRequestDTO request) {
-        PlaygroundEntity forUpdate = playgroundEntityRepository.findLockById(request.getPlaygroundEntityId());
+        PlaygroundEntity forUpdate = playgroundEntityRepository.findForPessimisticWriteById(request.getPlaygroundEntityId());
         log.info("Entity {} selected for update", forUpdate.getId());
         forUpdate.setStatus(request.getStatus());
         forUpdate.setSucceed(request.getSucceed());
