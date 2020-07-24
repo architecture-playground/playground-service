@@ -39,6 +39,7 @@ dependencies {
 
     // 3-rd party
     implementation 'org.atteo:evo-inflector:1.0.1'
+    implementation 'joda-time:joda-time:2.10.5'
 
     compileOnly 'org.projectlombok:lombok'
 
