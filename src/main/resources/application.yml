@@ -10,14 +10,19 @@ spring:
     properties:
       hibernate:
         jdbc.batch_size: 20
+        order_inserts: true
         dialect: org.hibernate.dialect.PostgreSQL95Dialect
         default_schema: public
+        generate_statistics: true
   flyway:
     schemas: public, playground
 
 # Enable Hibernate SQL logging
 logging.level.org.hibernate.SQL: DEBUG
 logging.level.org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+logging.level.org.hibernate.hql: DEBUG
+#logging.level.org.hibernate.cache: INFO
+#logging.level.org.hibernate.jdbc: DEBUG
 
 server:
   port: 7999
