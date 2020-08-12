@@ -48,6 +48,7 @@ dependencies {
 
     // tests
     testCompile 'org.hamcrest:hamcrest-core:2.2'
+    testCompile 'com.google.guava:guava:29.0-jre'
     testCompile 'org.testcontainers:postgresql:1.13.0'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
