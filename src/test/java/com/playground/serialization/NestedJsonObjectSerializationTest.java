@@ -23,7 +23,7 @@ public class NestedJsonObjectSerializationTest {
         ForwardedMessageDTO msgDTO = new ForwardedMessageDTO();
         msgDTO.setPayload(json);
 
-        String forwardedJsonAsStr = new ObjectMapper().writeValueAsString(msgDTO);
+        String forwardedJsonAsStr = objectMapper.writeValueAsString(msgDTO);
         System.out.println(forwardedJsonAsStr);
     }
 
