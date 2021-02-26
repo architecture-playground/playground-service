@@ -19,7 +19,11 @@ public interface UserAddressClient {
     @GetMapping("/all")
     List<AddressDTO> getAll();
 
+    /**
+     * see https://www.programmersought.com/article/72114451663/
+     * Error message: RequestParam.vale() was empty on parameter 0
+     */
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/random")
-    List<AddressDTO> createRandom(@RequestParam Integer quantity);
+    List<AddressDTO> createRandom(@RequestParam(value = "quantity") Integer quantity);
 }
