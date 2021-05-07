@@ -21,7 +21,7 @@ public class VersionLockTest {
         var fetched1 = repository.findById(id).orElseThrow();
         var fetched2 = repository.findById(id).orElseThrow();
 
-        // when
+        // when-then
         fetched1.setComment("changed1");
         repository.save(fetched1);
 

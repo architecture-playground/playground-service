@@ -29,7 +29,7 @@ public class VersionedEntity {
     private String comment;
 
     @Version
-    private long version;
+    private Long version;
 
     public VersionedEntity(String comment) {
         this.comment = comment;
