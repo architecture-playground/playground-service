@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.playground'
 version = '1.0'
-sourceCompatibility = '13'
+sourceCompatibility = '11'
 
 configurations {
     compileOnly {
@@ -26,10 +26,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator:2.2.0.RELEASE'
 
     // spring cloud
-    runtime 'org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR2'
+    runtimeOnly 'org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR2'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:2.2.0.RELEASE'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon:2.2.0.RELEASE'
-    runtime 'org.springframework.cloud:spring-cloud-starter-consul-all:2.2.0.RELEASE'
+    runtimeOnly 'org.springframework.cloud:spring-cloud-starter-consul-all:2.2.0.RELEASE'
 
     // database
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -41,16 +41,17 @@ dependencies {
     // 3-rd party
     implementation 'org.atteo:evo-inflector:1.0.1'
     implementation 'joda-time:joda-time:2.10.5'
+    implementation 'com.opencsv:opencsv:4.1'
 
-    compileOnly 'org.projectlombok:lombok'
+    implementation 'org.projectlombok:lombok'
 
     annotationProcessor 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
 
     // tests
-    testCompile 'org.hamcrest:hamcrest-core:2.2'
-    testCompile 'com.google.guava:guava:29.0-jre'
-    testCompile 'org.testcontainers:postgresql:1.13.0'
+    testImplementation 'org.hamcrest:hamcrest-core:2.2'
+    testImplementation 'com.google.guava:guava:29.0-jre'
+    testImplementation 'org.testcontainers:postgresql:1.13.0'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
