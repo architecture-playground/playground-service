@@ -11,4 +11,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = EmailPayload.class, name = EmailPayload.EMAIL_PAYLOAD_TYPE)
 })
 public interface Payload {
+
+    String getType();
 }
