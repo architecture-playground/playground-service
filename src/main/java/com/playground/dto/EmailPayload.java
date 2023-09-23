@@ -1,5 +1,7 @@
 package com.playground.dto;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,9 @@ public class EmailPayload implements Payload {
 
     private String type = EMAIL_PAYLOAD_TYPE;
     private String email;
+
+    @JsonProperty("messageType")
+    @JsonAlias("msgType")
     private MessageType messageType;
 
     public EmailPayload(String email, MessageType messageType) {

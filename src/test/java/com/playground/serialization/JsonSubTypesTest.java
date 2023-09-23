@@ -45,4 +45,24 @@ public class JsonSubTypesTest {
         Payload result = objectMapper.convertValue(sourceMap, Payload.class);
         System.out.println(result);
     }
+
+    @Test
+    void testMultiplyJsonFieldsToSingleJavaField() {
+        MessageType expectedMessageType = MessageType.EMAIL_CONFIRMATION;
+        Map<String, Object> sourceMap1 = Map.of(
+                "type", EMAIL_PAYLOAD_TYPE,
+                "msgType", expectedMessageType
+        );
+
+        Map<String, Object> sourceMap2 = Map.of(
+                "type", EMAIL_PAYLOAD_TYPE,
+                "messageType", expectedMessageType
+        );
+
+        EmailPayload result1 = objectMapper.convertValue(sourceMap1, EmailPayload.class);
+        EmailPayload result2 = objectMapper.convertValue(sourceMap2, EmailPayload.class);
+
+        assertThat(result1.getMessageType()).isEqualTo(expectedMessageType);
+        assertThat(result2.getMessageType()).isEqualTo(expectedMessageType);
+    }
 }
